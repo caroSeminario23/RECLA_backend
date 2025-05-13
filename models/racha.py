@@ -22,6 +22,12 @@ class Racha(db.Model):
         nullable=False
     )
 
+    # Relaciones
+    persona = db.relationship(
+        'Persona',
+        backref='rachaPersona'
+    )
+
     # Constructor
     def __init__(self,
                 id_pers,

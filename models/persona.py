@@ -44,6 +44,17 @@ class Persona(db.Model):
         nullable=False
     )
 
+    # Relaciones
+    usuario = db.relationship(
+        'Usuario',
+        backref='PersonaUsuario'
+    )
+
+    distrito = db.relationship(
+        'Distrito',
+        backref='PersonaDistrito'
+    )
+
     # Constructor
     def __init__(self,
                 id_user,

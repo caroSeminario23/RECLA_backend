@@ -29,6 +29,12 @@ class TablaPuntos(db.Model):
         default=0
     )
 
+    # Relaciones
+    persona = db.relationship(
+        'Persona',
+        backref='tablaPuntosPersona'
+    )
+
     # Constructor
     def __init__(self,
                 id_pers,

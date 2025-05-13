@@ -29,6 +29,12 @@ class Institucion(db.Model):
         unique=True
     )
 
+    # Relaciones
+    usuario = db.relationship(
+        'Usuario',
+        backref='institucionUsuario'
+    )
+
     # Constructor
     def __init__(self,
                 id_user,
