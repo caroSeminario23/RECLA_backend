@@ -1,10 +1,10 @@
 from utils.db import db
 
-class Persona(db.Model):
-    __tablename__ = 'persona'
+class Eco_aprendiz(db.Model):
+    __tablename__ = 'eco_aprendiz'
 
     # Variables
-    id_pers = db.Column(
+    id_aprendiz = db.Column(
         db.Integer,
         primary_key=True,
         autoincrement=True,

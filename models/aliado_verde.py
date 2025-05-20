@@ -1,10 +1,10 @@
 from utils.db import db
 
-class Institucion(db.Model):
-    __tablename__ = 'institucion'
+class Aliado_verde(db.Model):
+    __tablename__ = 'aliado_verde'
 
     # Variables
-    id_inst = db.Column(
+    id_aliado = db.Column(
         db.Integer, 
         primary_key=True,
         autoincrement=True,

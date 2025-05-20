@@ -23,9 +23,9 @@ class TablaPuntos(db.Model):
     )
 
     fec_reg = db.Column(
-        db.Date,
+        db.DateTime,
         nullable=False,
-        default=db.func.current_date()
+        default=db.func.now()
     )
 
     # Constructor

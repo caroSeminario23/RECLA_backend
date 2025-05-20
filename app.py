@@ -6,11 +6,13 @@ import os
 from flask_sqlalchemy import SQLAlchemy
 from config import DATABASE_CONNECTION
 
+from services.distrito import distrito_routes
+
 app = Flask(__name__)
 
 CORS(
     app, 
-    origins = [''], #dirección del front-end
+    origins = ['localhost'], #dirección del front-end
     methods = ['GET', 'POST', 'PUT', 'DELETE'],
     allow_headers = ['Content-Type', 'Authorization']
 )
@@ -18,6 +20,8 @@ CORS(
 app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_CONNECTION
 
 db.init_app(app)
+
+app.register_blueprint(distrito_routes, url_prefix='/distrito_routes')
 
 with app.app_context():
     db.create_all()

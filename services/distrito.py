@@ -1,7 +1,7 @@
 from flask import Blueprint, request, jsonify, make_response
 from utils.db import db
 
-from model.distrito import distrito
+from models.distrito import Distrito
 from schemas.distrito import distrito_schema, distritos_schema
 
 distrito_routes = Blueprint('distrito_routes', __name__)

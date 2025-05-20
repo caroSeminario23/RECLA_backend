@@ -5,11 +5,11 @@ from models.persona import Persona
 from schemas.usuario import Usuario_Schema
 from schemas.distrito import Distrito_Schema
 
-class Persona_Schema(ma.Schema):
+class Eco_aprendiz_Schema(ma.Schema):
     class Meta:
-        model = Persona
+        model = Eco_aprendiz
         fields = (
-            'id_pers',
+            'id_aprendiz',
             'id_user',
             'nom_priv',
             'apellido',
@@ -23,5 +23,5 @@ class Persona_Schema(ma.Schema):
     usuario = ma.Nested(Usuario_Schema)
     distrito = ma.Nested(Distrito_Schema)
 
-persona_schema = Persona_Schema()
-personas_schema = Persona_Schema(many=True)
+eco_aprendiz_schema = Eco_aprendiz_Schema()
+eco_aprendices_schema = Eco_aprendiz_Schema(many=True)

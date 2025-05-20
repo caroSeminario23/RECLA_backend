@@ -1,14 +1,14 @@
 from utils.ma import ma
 from marshmallow import fields
 
-from models.institucion import Institucion
+from models.Aliado_verde import Aliado_verde
 from schemas.usuario import Usuario_Schema
 
-class Institucion_Schema(ma.Schema):
+class Aliado_verde_Schema(ma.Schema):
     class Meta:
         model = Institucion
         fields = (
-            'id_inst',
+            'id_aliado',
             'id_user',
             'nombre',
             'ruc',
@@ -17,5 +17,5 @@ class Institucion_Schema(ma.Schema):
 
     usuario = ma.Nested(Usuario_Schema)
 
-institucion_schema = Institucion_Schema()
-instituciones_schema = Institucion_Schema(many=True)
+aliado_verde_schema = Aliado_verde_Schema()
+aliados_verdes_schema = Aliado_verde_Schema(many=True)
