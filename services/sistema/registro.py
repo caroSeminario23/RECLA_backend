@@ -1,0 +1,149 @@
+from flask import Blueprint, request, jsonify, make_response
+from utils.db import db
+
+from model.usuario import Usuario
+from model.eco_aprendiz import Eco_aprendiz
+from schemas.usuario import usuario_schema, usuarios_schema
+from schemas.eco_aprendiz import ecoaprendiz_schema, ecoaprendices_schema
+
+# RUTAS DE REGISTRO
+registro_routes = Blueprint('registro', __name__)
+
+# Encriptar contraseña usando bcrypt
+def encriptar_contrasena(contrasena):
+    # Generar un salt (un valor aleatorio) para la encriptación segura
+    salt = bcrypt.gensalt()
+    # Encriptar la contraseña
+    contrasena_encriptada = bcrypt.hashpw(contrasena.encode('utf-8'), salt)
+    return contrasena_encriptada.decode('utf-8')
+
+# Registrar ecoaprendiz
+@registro_routes.route('/registrarEcoaprendiz', methods=['POST'])
+def registrarEcoaprendiz():
+    nombre = request.json.get('nombre')
+    apellido = request.json.get('apellido')
+    fecha_nacimiento = request.json.get('fecha_nacimiento')
+    id_distrito = request.json.get('id_distrito')
+    nombre_usuario = request.json.get('nombre_usuario')
+    email = request.json.get('email')
+    contrasena = request.json.get('contrasena')
+
+    if not nombre or not apellido or not fecha_nacimiento or not id_distrito or not nombre_usuario or not email or not contrasena:
+        data = {
+            'status': 400,
+            'message': 'Todos los campos son requeridos'
+        }
+        return make_response(jsonify(data), 400)
+
+    # Verificar si el usuario ya existe
+    usuario = Usuario.query.filter_by(email=email).first()
+    if usuario:
+        data = {
+            'status': 409,
+            'message': 'Este correo ya está registrado con otro usuario'
+        }
+        return make_response(jsonify(data), 409)
+    else:
+        # Encriptar la contraseña
+        contrasena_encriptada = encriptar_contrasena(contrasena)
+
+        # Crear un nuevo usuario
+        nuevo_usuario = Usuario(
+            email=email,
+            contra=contrasena_encriptada,
+        )
+        db.session.add(nuevo_usuario) # Agregar el usuario a la sesión
+        db.session.commit() # Confirmar los cambios en la base de datos
+        result_usuario = usuario_schema.dump(nuevo_usuario) # Serializar el usuario
+
+        # Obtener el ID del nuevo usuario
+        id_nuevo_usuario = Usuario.query.filter_by(email=email).first().id_user
+        if not id_nuevo_usuario:
+            data = {
+                'status': 500,
+                'message': 'Usuario no encontrado después de la creación'
+            }
+            return make_response(jsonify(data), 500)
+
+        # Crear un nuevo ecoaprendiz
+        nuevo_ecoaprendiz = Ecoaprendiz(
+            id_user= id_nuevo_usuario,
+            nom_priv=nombre,
+            apellido=apellido,
+            fec_nac=fecha_nacimiento,
+            nom_pub=nombre_usuario,
+            id_dist=id_distrito
+        )
+
+        db.session.add(nuevo_ecoaprendiz)
+        db.session.commit()
+        result_ecoaprendiz = ecoaprendiz_schema.dump(nuevo_ecoaprendiz)
+        data = {
+            'status': 201,
+            'message': 'Ecoaprendiz registrado exitosamente',
+            'data': result_ecoaprendiz
+        }
+        return make_response(jsonify(data), 201)
+
+
+# Registrar aliado verde
+@registro_routes.route('/registrarAliadoVerde', methods=['POST'])
+def registrarAliadoVerde():
+    nombre = request.json.get('nombre')
+    ruc = request.json.get('ruc')
+    email = request.json.get('email')
+    contrasena = request.json.get('contrasena')
+
+    if not nombre or not ruc or not email or not contrasena:
+        data = {
+            'status': 400,
+            'message': 'Todos los campos son requeridos'
+        }
+        return make_response(jsonify(data), 400)
+
+    # Verificar si el usuario ya existe
+    usuario = Usuario.query.filter_by(email=email).first()
+    if usuario:
+        data = {
+            'status': 409,
+            'message': 'Este correo ya está registrado con otro usuario'
+        }
+        return make_response(jsonify(data), 409)
+    else:
+        # Encriptar la contraseña
+        contrasena_encriptada = encriptar_contrasena(contrasena)
+
+        # Crear un nuevo usuario
+        nuevo_usuario = Usuario(
+            email=email,
+            contra=contrasena_encriptada,
+        )
+        db.session.add(nuevo_usuario) # Agregar el usuario a la sesión
+        db.session.commit() # Confirmar los cambios en la base de datos
+        result_usuario = usuario_schema.dump(nuevo_usuario) # Serializar el usuario
+
+        # Obtener el ID del nuevo usuario
+        id_nuevo_usuario = Usuario.query.filter_by(email=email).first().id_user
+        if not id_nuevo_usuario:
+            data = {
+                'status': 500,
+                'message': 'Usuario no encontrado después de la creación'
+            }
+            return make_response(jsonify(data), 500)
+
+        # Crear un nuevo aliado verde
+        nuevo_aliadoverde = Ecoaprendiz(
+            id_user= id_nuevo_usuario,
+            nombre=nombre,
+            ruc=ruc
+        )
+
+        db.session.add(nuevo_aliadoverde)
+        db.session.commit()
+        result_aliadoverde = aliado_schema.dump(nuevo_aliadoverde)
+        data = {
+            'status': 201,
+            'message': 'Aliado verde registrado exitosamente',
+            'data': result_ecoaprendiz
+        }
+        return make_response(jsonify(data), 201)
