@@ -3,7 +3,7 @@ from marshmallow import fields
 
 from models.distrito import Distrito
 
-class Distrito_Schema(ma.SQLAlchemyAutoSchema):
+class Distrito_Schema(ma.Schema):
     class Meta:
         model = Distrito
         fields = (

@@ -1,7 +1,7 @@
 from utils.ma import ma
 from marshmallow import fields
 
-from models.tabla_puntos import TablaPuntos
+from models.usuario import Usuario
 
 class Usuario_Schema(ma.Schema):
     class Meta:

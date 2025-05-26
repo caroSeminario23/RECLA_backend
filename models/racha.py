@@ -11,9 +11,9 @@ class Racha(db.Model):
         nullable=False
     )
 
-    id_pers = db.Column(
+    id_aprendiz = db.Column(
         db.Integer,
-        db.ForeignKey('persona.id_pers'),
+        db.ForeignKey('eco_aprendiz.id_aprendiz'),
         nullable=False
     )
 
@@ -23,14 +23,14 @@ class Racha(db.Model):
     )
 
     # Relaciones
-    persona = db.relationship(
-        'Persona',
-        backref='ecoaprendiz_racha'
+    ecoaprendiz = db.relationship(
+        'Eco_aprendiz',
+        backref='Ecoaprendiz_racha'
     )
 
     # Constructor
     def __init__(self,
-                id_pers,
+                id_aprendiz,
                 n_dias): 
         self.id_pers=id_pers
         self.n_dias=n_dias

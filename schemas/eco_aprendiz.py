@@ -1,11 +1,11 @@
 from utils.ma import ma
 from marshmallow import fields
 
-from models.persona import Persona
+from models.eco_aprendiz import Eco_aprendiz
 from schemas.usuario import Usuario_Schema
 from schemas.distrito import Distrito_Schema
 
-class Eco_aprendiz_Schema(ma.Schema):
+class Ecoaprendiz_Schema(ma.Schema):
     class Meta:
         model = Eco_aprendiz
         fields = (
@@ -13,7 +13,7 @@ class Eco_aprendiz_Schema(ma.Schema):
             'id_user',
             'nom_priv',
             'apellido',
-            'anio_nac',
+            'fec_nac',
             'nom_pub',
             'id_dist',
             'usuario',
@@ -23,5 +23,5 @@ class Eco_aprendiz_Schema(ma.Schema):
     usuario = ma.Nested(Usuario_Schema)
     distrito = ma.Nested(Distrito_Schema)
 
-eco_aprendiz_schema = Eco_aprendiz_Schema()
-eco_aprendices_schema = Eco_aprendiz_Schema(many=True)
+ecoaprendiz_schema = Ecoaprendiz_Schema()
+ecoaprendices_schema = Ecoaprendiz_Schema(many=True)
