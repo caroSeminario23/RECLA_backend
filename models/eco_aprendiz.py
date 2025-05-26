@@ -27,7 +27,7 @@ class Eco_aprendiz(db.Model):
         nullable=False,
     )
 
-    anio_nac = db.Column(
+    fec_nac = db.Column(
         db.Date,
         nullable=False
     )
@@ -47,12 +47,12 @@ class Eco_aprendiz(db.Model):
     # Relaciones
     usuario = db.relationship(
         'Usuario',
-        backref='PersonaUsuario'
+        backref='Usuario_ecoaprendiz'
     )
 
     distrito = db.relationship(
         'Distrito',
-        backref='PersonaDistrito'
+        backref='Ecoaprendiz_distrito'
     )
 
     # Constructor
@@ -60,11 +60,12 @@ class Eco_aprendiz(db.Model):
                 id_user,
                 nom_priv,
                 apellido,
-                anio_nac,
+                fec_nac,
                 nom_pub,
                 id_dist):
         self.id_user=id_user
         self.nom_priv=nom_priv
         self.apellido=apellido
-        self.anio_nac=anio_nac
+        self.fec_nac=fec_nac
+        self.nom_pub=nom_pub
         self.id_dist=id_dist

@@ -1,7 +1,7 @@
 from utils.db import db
 
-class TablaPuntos(db.Model):
-    __tablename__ = 'tabla_puntos'
+class Usuario(db.Model):
+    __tablename__ = 'usuario'
 
     # Variables
     id_user = db.Column(

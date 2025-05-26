@@ -32,7 +32,7 @@ class Aliado_verde(db.Model):
     # Relaciones
     usuario = db.relationship(
         'Usuario',
-        backref='institucionUsuario'
+        backref='usuario_aliado'
     )
 
     # Constructor

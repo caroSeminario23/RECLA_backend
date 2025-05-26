@@ -25,7 +25,7 @@ class Racha(db.Model):
     # Relaciones
     persona = db.relationship(
         'Persona',
-        backref='rachaPersona'
+        backref='ecoaprendiz_racha'
     )
 
     # Constructor
