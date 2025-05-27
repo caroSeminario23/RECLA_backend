@@ -8,6 +8,7 @@ from config import DATABASE_CONNECTION
 
 from services.sistema.distrito import distrito_routes
 from services.sistema.registro import registro_routes
+from services.sistema.inicio_sesion import inicio_sesion_routes
 
 app = Flask(__name__)
 
@@ -24,6 +25,7 @@ db.init_app(app)
 
 app.register_blueprint(distrito_routes, url_prefix='/distrito_routes')
 app.register_blueprint(registro_routes, url_prefix='/registro_routes')
+app.register_blueprint(inicio_sesion_routes, url_prefix='/inicio_sesion_routes')
 
 with app.app_context():
     db.create_all()

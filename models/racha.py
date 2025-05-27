@@ -32,5 +32,5 @@ class Racha(db.Model):
     def __init__(self,
                 id_aprendiz,
                 n_dias): 
-        self.id_pers=id_pers
+        self.id_aprendiz=id_aprendiz
         self.n_dias=n_dias

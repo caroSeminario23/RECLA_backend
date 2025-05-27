@@ -11,7 +11,7 @@ from schemas.aliado_verde import aliado_schema, aliados_schema
 from services.functions.encriptacion import verificar_contrasena
 
 # RUTAS DE INICIO DE SESIÓN
-inicio_sesion_routes = Blueprint('inicio_sesion', __name__)
+inicio_sesion_routes = Blueprint('inicio_sesion_routes', __name__)
 
 # INICIOR SESIÓN DE ECOAPRENDIZ
 @inicio_sesion_routes.route('/iniciarSesionEcoaprendiz', methods=['POST'])
@@ -27,8 +27,6 @@ def iniciarSesionEcoaprendiz():
         return make_response(jsonify(data), 400)
 
     # Verificar si el usuario existe
-    id_usuario = buscarUsuario(email, contrasena)
-
     usuario = Usuario.query.filter_by(email=email).first()
     if not usuario:
         data = {
@@ -78,8 +76,6 @@ def iniciarSesionAliadoVerde():
         return make_response(jsonify(data), 400)
 
     # Verificar si el usuario existe
-    id_usuario = buscarUsuario(email, contrasena)
-
     usuario = Usuario.query.filter_by(email=email).first()
     if not usuario:
         data = {

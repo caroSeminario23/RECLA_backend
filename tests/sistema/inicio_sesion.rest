@@ -1,19 +1,19 @@
 # INICIAR SESIÓN ECOAPRENDIZ
-POST http://172.31.44.180:5000/inicio_sesion/iniciarSesionEcoaprendiz
+POST http://172.31.44.180:5000/inicio_sesion_routes/iniciarSesionEcoaprendiz
 Content-Type: application/json
 
 {
-    "email": "",
-    "contrasena": ""
+    "email": "isabel.seminario@gmail.com",
+    "contrasena": "isabel123"
 }
 #####
 
 # INICIAR SESIÓN ALIADO VERDE
-POST http://172.31.44.180:5000/inicio_sesion/iniciarSesionAliadoVerde
+POST http://172.31.44.180:5000/inicio_sesion_routes/iniciarSesionAliadoVerde
 Content-Type: application/json
 
 {
-    "email": "",
-    "contrasena": ""
+    "email": "plastitic@hotmail.com",
+    "contrasena": "plastitic123"
 }
 #####
