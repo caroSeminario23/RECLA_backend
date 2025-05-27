@@ -5,9 +5,11 @@ from models.eco_aprendiz import Eco_aprendiz
 from schemas.usuario import Usuario_Schema
 from schemas.distrito import Distrito_Schema
 
-class Ecoaprendiz_Schema(ma.Schema):
+class Ecoaprendiz_Schema(ma.SQLAlchemyAutoSchema):
     class Meta:
         model = Eco_aprendiz
+        include_fk = True
+        include_relationships = True
         fields = (
             'id_aprendiz',
             'id_user',

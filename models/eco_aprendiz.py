@@ -13,7 +13,7 @@ class Eco_aprendiz(db.Model):
 
     id_user = db.Column(
         db.Integer,
-        db.ForeignKey('usuario.id_user')
+        db.ForeignKey('usuario.id_user'),
         nullable=False
     )
 

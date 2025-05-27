@@ -1,0 +1,26 @@
+# REGISTRAR ECOAPRENDIZ
+POST http://172.31.44.180:5000/registro_routes/registrarEcoaprendiz
+Content-Type: application/json
+
+{
+    "nombre": "María Isabel",
+    "apellido": "Seminario González",
+    "fecha_nacimiento": "2002-05-15",
+    "id_distrito": "2",
+    "nombre_usuario": "Lunita",
+    "email": "isabel.seminario@gmail.com",
+    "contrasena": "isabel123"
+}
+#####
+
+# REGISTRAR ALIADO VERDE
+POST http://172.31.44.180:5000/registro_routes/registrarAliadoVerde
+Content-Type: application/json
+
+{
+    "nombre": "Plastitic",
+    "ruc": "98765432198",
+    "email": "plastitic@hotmail.com",
+    "contrasena": "plastitic123"
+}
+#####

@@ -11,7 +11,7 @@ from schemas.aliado_verde import aliado_schema, aliados_schema
 from services.functions.encriptacion import encriptar_contrasena
 
 # RUTAS DE REGISTRO
-registro_routes = Blueprint('registro', __name__)
+registro_routes = Blueprint('registro_routes', __name__)
 
 # REGISTRAR ECOAPRENDIZ
 @registro_routes.route('/registrarEcoaprendiz', methods=['POST'])
@@ -62,7 +62,7 @@ def registrarEcoaprendiz():
             return make_response(jsonify(data), 500)
 
         # Crear un nuevo ecoaprendiz
-        nuevo_ecoaprendiz = Ecoaprendiz(
+        nuevo_ecoaprendiz = Eco_aprendiz(
             id_user= id_nuevo_usuario,
             nom_priv=nombre,
             apellido=apellido,
@@ -116,6 +116,7 @@ def registrarAliadoVerde():
         )
         db.session.add(nuevo_usuario) # Agregar el usuario a la sesión
         db.session.commit() # Confirmar los cambios en la base de datos
+
         result_usuario = usuario_schema.dump(nuevo_usuario) # Serializar el usuario
 
         # Obtener el ID del nuevo usuario
@@ -128,18 +129,18 @@ def registrarAliadoVerde():
             return make_response(jsonify(data), 500)
 
         # Crear un nuevo aliado verde
-        nuevo_aliadoverde = Ecoaprendiz(
+        nuevo_aliado_verde = Aliado_verde(
             id_user= id_nuevo_usuario,
             nombre=nombre,
             ruc=ruc
         )
 
-        db.session.add(nuevo_aliadoverde)
+        db.session.add(nuevo_aliado_verde)
         db.session.commit()
-        result_aliadoverde = aliado_schema.dump(nuevo_aliadoverde)
+        result_aliado_verde = aliado_schema.dump(nuevo_aliado_verde)
         data = {
             'status': 201,
             'message': 'Aliado verde registrado exitosamente',
-            'data': result_ecoaprendiz
+            'data': result_aliado_verde
         }
         return make_response(jsonify(data), 201)

@@ -9,7 +9,7 @@ distrito_routes = Blueprint('distrito_routes', __name__)
 # Mostrar todos los distritos
 @distrito_routes.route('/getDistritos', methods=['GET'])
 def get_distritos():
-    mensaje = Mensaje.query.all()
+    mensaje = Distrito.query.all()
 
     if not mensaje:
         data = {

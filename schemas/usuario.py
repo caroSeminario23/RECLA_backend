@@ -3,7 +3,7 @@ from marshmallow import fields
 
 from models.usuario import Usuario
 
-class Usuario_Schema(ma.Schema):
+class Usuario_Schema(ma.SQLAlchemyAutoSchema):
     class Meta:
         model = Usuario
         fields = (
