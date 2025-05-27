@@ -1,23 +1,19 @@
 from flask import Blueprint, request, jsonify, make_response
 from utils.db import db
 
-from model.usuario import Usuario
-from model.eco_aprendiz import Eco_aprendiz
+from models.usuario import Usuario
+from models.eco_aprendiz import Eco_aprendiz
+from models.aliado_verde import Aliado_verde
 from schemas.usuario import usuario_schema, usuarios_schema
 from schemas.eco_aprendiz import ecoaprendiz_schema, ecoaprendices_schema
+from schemas.aliado_verde import aliado_schema, aliados_schema
+
+from services.functions.encriptacion import encriptar_contrasena
 
 # RUTAS DE REGISTRO
 registro_routes = Blueprint('registro', __name__)
 
-# Encriptar contraseña usando bcrypt
-def encriptar_contrasena(contrasena):
-    # Generar un salt (un valor aleatorio) para la encriptación segura
-    salt = bcrypt.gensalt()
-    # Encriptar la contraseña
-    contrasena_encriptada = bcrypt.hashpw(contrasena.encode('utf-8'), salt)
-    return contrasena_encriptada.decode('utf-8')
-
-# Registrar ecoaprendiz
+# REGISTRAR ECOAPRENDIZ
 @registro_routes.route('/registrarEcoaprendiz', methods=['POST'])
 def registrarEcoaprendiz():
     nombre = request.json.get('nombre')
@@ -86,7 +82,7 @@ def registrarEcoaprendiz():
         return make_response(jsonify(data), 201)
 
 
-# Registrar aliado verde
+# REGISTRAR ALIADO VERDE
 @registro_routes.route('/registrarAliadoVerde', methods=['POST'])
 def registrarAliadoVerde():
     nombre = request.json.get('nombre')
