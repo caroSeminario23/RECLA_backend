@@ -1,0 +1,35 @@
+# CREAR RACHA
+POST http://172.31.44.180:5000/racha_routes/crearRacha
+Content-Type: application/json
+
+{
+    "id_aprendiz": 3
+}
+#####
+
+# VISUALIZAR RACHA
+POST http://172.31.44.180:5000/racha_routes/getRacha
+Content-Type: application/json
+
+{
+    "id_aprendiz": 3
+}
+#####
+
+# INCREMENTAR RACHA
+PUT http://172.31.44.180:5000/racha_routes/incrementarRacha
+Content-Type: application/json
+
+{
+    "id_aprendiz": 3
+}
+#####
+
+# REINICIAR RACHA
+PUT http://172.31.44.180:5000/racha_routes/reiniciarRacha
+Content-Type: application/json
+
+{
+    "id_aprendiz": 3
+}
+#####

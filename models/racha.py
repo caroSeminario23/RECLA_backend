@@ -19,7 +19,8 @@ class Racha(db.Model):
 
     n_dias = db.Column(
         db.Integer,
-        nullable=False
+        nullable=False,
+        default=0
     )
 
     # Relaciones
@@ -30,7 +31,5 @@ class Racha(db.Model):
 
     # Constructor
     def __init__(self,
-                id_aprendiz,
-                n_dias): 
+                id_aprendiz): 
         self.id_aprendiz=id_aprendiz
-        self.n_dias=n_dias
