@@ -29,6 +29,12 @@ class Tabla_puntos(db.Model):
         default=0
     )
 
+    # Relaciones
+    eco_aprendiz = db.relationship(
+        'Eco_aprendiz',
+        backref='ecoaprendiz_tabla_puntos'
+    )
+
     # Constructor
     def __init__(self, 
                  id_aprendiz):
